@@ -9,7 +9,13 @@ import SignupForm from './signup/SingupForm';
 import Link from 'next/link';
 import { AiOutlineLoading } from 'react-icons/ai';
 
-export default function Login({ setSession }: { setSession: Dispatch<SetStateAction<Session | null>> }) {
+export default function Login({
+	setSession,
+	isOpen,
+}: {
+	setSession: Dispatch<SetStateAction<Session | null>>;
+	isOpen: boolean;
+}) {
 	const [isLoginOpen, setLoginIsOpen] = useState(false);
 	const [isSignupOpen, setSignupIsOpen] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
@@ -34,7 +40,7 @@ export default function Login({ setSession }: { setSession: Dispatch<SetStateAct
 	}, [session]);
 
 	return (
-		<div className={'flex justify-end gap-4'}>
+		<div className={'flex items-center justify-end gap-4'}>
 			{isLoading ? (
 				<AiOutlineLoading className='animate-spin' />
 			) : session ? (
@@ -45,11 +51,26 @@ export default function Login({ setSession }: { setSession: Dispatch<SetStateAct
 						className='flex items-center rounded-full border border-black p-2 dark:border-white'>
 						{player?.name}
 					</Link>
-					<button onClick={handleLogOut}>Sair</button>
+					<button
+						onClick={handleLogOut}
+						className={cn(
+							'transition max-sm:absolute max-sm:-bottom-10 max-sm:right-4 max-sm:translate-x-[150%]',
+							{
+								'z-40 max-sm:translate-x-0': isOpen,
+							}
+						)}>
+						Sair
+					</button>
 				</>
 			) : (
 				<>
-					<div className='relative'>
+					<div
+						className={cn(
+							'relative z-50 transition max-sm:absolute max-sm:-bottom-20 max-sm:right-4 max-sm:translate-x-[150%]',
+							{
+								'z-40 max-sm:translate-x-0': isOpen,
+							}
+						)}>
 						<button
 							onClick={() => {
 								setLoginIsOpen((data) => !data);
@@ -57,27 +78,34 @@ export default function Login({ setSession }: { setSession: Dispatch<SetStateAct
 							}}>
 							Entrar
 						</button>
-						<div className='absolute -bottom-4 left-1/2 z-20 origin-top -translate-x-1/2 translate-y-full'>
+						<div className='absolute -bottom-4 right-0 z-50 origin-top translate-y-full sm:left-1/2 sm:-translate-x-1/2'>
 							<LoginForm
 								className={cn('origin-top scale-100 transition', {
-									'h-0 scale-0': !isLoginOpen,
+									'pointer-events-none h-0 scale-0': !isLoginOpen,
 								})}
 								setSession={setSession}
 							/>
 						</div>
 					</div>
-					<div className='relative'>
+					<div
+						className={cn(
+							'relative transition max-sm:absolute max-sm:-bottom-10 max-sm:right-4 max-sm:translate-x-[150%]',
+							{
+								'z-40 max-sm:translate-x-0': isOpen,
+							}
+						)}>
 						<button
 							onClick={() => {
 								setSignupIsOpen((data) => !data);
 								setLoginIsOpen((data) => false);
-							}}>
+							}}
+							className='rounded-full border border-black px-2 py-1 dark:border-white sm:py-2'>
 							Cadastrar-se
 						</button>
 						<div className='absolute -bottom-4 z-20 origin-top -translate-x-1/2 translate-y-full'>
 							<SignupForm
 								className={cn('origin-top scale-100 transition', {
-									'h-0 scale-0': !isSignupOpen,
+									'pointer-events-none h-0 scale-0 max-sm:w-0': !isSignupOpen,
 								})}
 								setSession={setSession}
 							/>

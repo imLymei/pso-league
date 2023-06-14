@@ -55,7 +55,7 @@ export default function LoginForm({
 	return (
 		<form
 			onSubmit={handleSubmit(registerUser)}
-			className={`top-0 flex flex-col gap-4 rounded-lg border border-black bg-white p-2 after:absolute after:-top-2 after:left-1/2 after:h-4 after:w-4 after:-translate-x-1/2 after:rotate-45 after:border-l after:border-t after:border-black after:bg-white after:transition after:content-[""] dark:border-white dark:bg-black dark:after:border-white dark:after:bg-black ${className}`}>
+			className={`top-0 flex flex-col gap-4 rounded-lg border border-black bg-white p-2 after:absolute after:-top-2 after:right-0 after:h-4 after:w-4 after:-translate-x-1/2 after:rotate-45 after:border-l after:border-t after:border-black after:bg-white after:transition after:content-[""] dark:border-white dark:bg-black dark:after:border-white dark:after:bg-black max-sm:after:-translate-x-3/4 sm:after:left-1/2 ${className}`}>
 			<div className='flex flex-col'>
 				<div className='relative flex'>
 					<p>Email</p>

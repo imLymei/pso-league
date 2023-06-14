@@ -1,8 +1,9 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function NavTitle() {
 	return (
-		<div className='flex items-center justify-center gap-2'>
+		<Link href={'/'} className='flex items-center justify-center gap-2'>
 			<div className='relative aspect-square h-10 overflow-hidden rounded-full border border-white'>
 				<Image
 					src={'/images/logo-icon.png'}
@@ -14,6 +15,6 @@ export default function NavTitle() {
 				/>
 			</div>
 			<p className='select-none'>Tabela PSO</p>
-		</div>
+		</Link>
 	);
 }

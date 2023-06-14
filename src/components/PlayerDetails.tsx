@@ -2,7 +2,7 @@
 
 import { sessionContext } from '@/utils/context';
 import { supabase } from '@/utils/utils';
-import { useState, useEffect, useRef, useContext, Dispatch, SetStateAction } from 'react';
+import { useState, useRef, useContext, Dispatch, SetStateAction } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { AiFillCheckCircle, AiFillCloseCircle, AiOutlineLoading } from 'react-icons/ai';
 
@@ -106,7 +106,7 @@ export default function PlayerDetails({
 					<p>Voce esta a um passo de se tornar um jogador!</p>
 					<p>agora escolha seu nome e numero da camisa!</p>
 				</div>
-				<div className='flex w-2/3 items-center justify-between gap-2'>
+				<div className='flex w-full items-center justify-between gap-2 sm:w-2/3'>
 					<label>Nome:</label>
 					<input
 						{...register('name')}
@@ -117,7 +117,7 @@ export default function PlayerDetails({
 						className='rounded-lg border border-black p-1 text-black outline-none dark:border-white dark:bg-black dark:text-white'
 					/>
 				</div>
-				<div className='flex w-2/3 items-center justify-between gap-2'>
+				<div className='flex w-full items-center justify-between gap-2 sm:w-2/3'>
 					<label>Número:</label>
 					<input
 						{...register('number')}
@@ -127,7 +127,7 @@ export default function PlayerDetails({
 						className='rounded-lg border border-black p-1 text-black outline-none dark:border-white dark:bg-black dark:text-white'
 					/>
 				</div>
-				<div className='relative w-2/3 rounded-lg border border-black px-2 text-black outline-none dark:border-white dark:bg-black dark:text-white'>
+				<div className='relative w-full rounded-lg border border-black px-2 text-black outline-none dark:border-white dark:bg-black dark:text-white sm:w-2/3'>
 					<label>@</label>
 					<input
 						{...register('user_id')}

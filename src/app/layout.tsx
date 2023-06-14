@@ -68,7 +68,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<title>Tabela de Times PSO</title>
 				<meta name='description' content='Um site para tabelas de PSO'></meta>
 			</head>
-			<body className={cn(`min-h-screen ${inter.className}`, { 'dark bg-black text-white': isDarkMode })}>
+			<body
+				className={cn(`min-h-screen ${inter.className}`, {
+					'dark bg-black text-white': isDarkMode,
+				})}>
 				<isDarkModeContext.Provider value={isDarkMode}>
 					<sessionContext.Provider value={session}>
 						<playerContext.Provider value={player}>
