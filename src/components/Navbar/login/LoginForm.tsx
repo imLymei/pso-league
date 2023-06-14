@@ -60,7 +60,7 @@ export default function LoginForm({
 				<div className='relative flex'>
 					<p>Email</p>
 					<p className='peer/email cursor-pointer p-1 text-red-500'>*</p>
-					<p className='absolute -left-2 top-2 origin-top-right -translate-x-full scale-0 rounded-l-lg border border-black p-2 transition peer-hover/email:scale-100 dark:border-white'>
+					<p className='absolute -left-2 top-2 origin-top-right -translate-x-full scale-0 rounded-l-lg border border-black p-2 opacity-0 transition peer-hover/email:scale-100 peer-hover/email:opacity-100 dark:border-white'>
 						O e-mail precisa ser um e-mail válido.
 					</p>
 				</div>
@@ -77,7 +77,7 @@ export default function LoginForm({
 				<div className='relative flex'>
 					<p>Senha</p>
 					<p className='peer/password cursor-pointer p-1 text-red-500'>*</p>
-					<p className='absolute -left-2 top-2 origin-top-right -translate-x-full scale-0 rounded-l-lg border border-black p-2 transition peer-hover/password:scale-100 dark:border-white'>
+					<p className='absolute -left-2 top-2 origin-top-right -translate-x-full scale-0 rounded-l-lg border border-black p-2 opacity-0 transition peer-hover/password:scale-100 peer-hover/password:opacity-100 dark:border-white'>
 						A senha precisa conter pelo menos 6 dígitos, com um número e uma letra.
 					</p>
 				</div>

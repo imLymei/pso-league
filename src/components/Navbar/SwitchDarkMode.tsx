@@ -10,7 +10,7 @@ export default function SwitchDarkMode({ className, onClick, isDarkMode, ...prop
 	return (
 		<button
 			className={cn(
-				'flex w-14 items-center justify-center rounded-full bg-black p-1 text-black',
+				'flex w-14 items-center justify-center rounded-full bg-black p-1 text-black ease-in-out',
 				{ 'bg-white text-white': isDarkMode },
 				className
 			)}

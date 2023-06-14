@@ -1,23 +1,22 @@
 interface match {
 	id: number;
-	homeTeam: team;
-	awayTeam: team;
-	result: {
-		homeGoals: number;
-		awayGoals: number;
-		winner: 'home' | 'away';
-	};
+	home: number;
+	away: number;
+	results: string;
 }
 
 interface player {
 	id: number;
 	name: string;
 	number: number;
+	email: number;
+	user_id: string;
 }
 
 interface team {
 	id: number;
 	name: string;
-	players: player[];
-	captain: player;
+	players: number[];
+	captain: string;
+	owner: string;
 }

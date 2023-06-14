@@ -16,19 +16,19 @@ export default function Navbar({
 	const isDarkMode = useContext(isDarkModeContext);
 
 	return (
-		<div className='relative flex items-center justify-between p-2'>
+		<div className='relative flex items-center justify-between px-8 py-2'>
 			<NavTitle />
 
 			<NavLinks />
 
 			<div className='flex items-center gap-4'>
-				<Login setSession={setSession} />
 				<SwitchDarkMode
 					onClick={() => {
 						setIsDarkMode((value) => !value);
 					}}
 					isDarkMode={isDarkMode}
 				/>
+				<Login setSession={setSession} />
 			</div>
 			<div className='absolute bottom-0 left-0 h-px w-full bg-gradient-radial from-black to-75% dark:from-white' />
 		</div>
