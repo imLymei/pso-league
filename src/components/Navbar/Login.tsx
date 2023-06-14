@@ -78,7 +78,7 @@ export default function Login({
 							}}>
 							Entrar
 						</button>
-						<div className='absolute -bottom-4 right-0 z-50 origin-top translate-y-full sm:left-1/2 sm:-translate-x-1/2'>
+						<div className='absolute -bottom-4 right-0 z-50 min-w-max origin-top translate-y-full sm:left-1/2 sm:-translate-x-1/2'>
 							<LoginForm
 								className={cn('origin-top scale-100 transition', {
 									'pointer-events-none h-0 scale-0': !isLoginOpen,
