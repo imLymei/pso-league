@@ -63,10 +63,10 @@ export default function SignupForm({
 	return (
 		<form
 			onSubmit={handleSubmit(registerUser)}
-			className={`top-0 flex flex-col gap-4 rounded-lg border border-black bg-white p-2 after:absolute after:-top-2 after:left-3/4 after:h-4 after:w-4 after:-translate-x-1/2 after:rotate-45 after:border-l after:border-t after:border-black after:bg-white after:transition after:content-[""] dark:border-white dark:bg-black dark:after:border-white dark:after:bg-black ${className}`}>
+			className={`top-0 flex flex-col gap-4 rounded-lg border border-black bg-white p-2 shadow-sm shadow-black/50 after:absolute after:-top-2 after:left-3/4 after:h-4 after:w-4 after:-translate-x-1/2 after:rotate-45 after:border-l after:border-t after:border-black after:bg-white after:transition after:content-[""] dark:border-white dark:bg-black dark:shadow-white/50 dark:after:border-white dark:after:bg-black ${className}`}>
 			{!isSuccess ? (
 				<>
-					<div className='flex flex-col gap-2'>
+					<div className='flex flex-col'>
 						<div className='relative flex'>
 							<p>Email</p>
 							<p className='peer/email cursor-pointer p-1 text-red-500'>*</p>
@@ -77,13 +77,13 @@ export default function SignupForm({
 						<input
 							type='email'
 							placeholder='eu@contato.com'
-							className='rounded-lg border border-black bg-transparent p-1 outline-none invalid:text-red-500 dark:border-white'
+							className='rounded-lg border border-black bg-transparent p-1 shadow-sm shadow-black/50 outline-none invalid:text-red-500 dark:border-white dark:shadow-white/50'
 							required
 							{...register('email')}
 						/>
 					</div>
 
-					<div className='flex flex-col gap-2'>
+					<div className='flex flex-col'>
 						<div className='relative flex'>
 							<p>Senha</p>
 							<p className='peer/password cursor-pointer p-1 text-red-500'>*</p>
@@ -94,7 +94,7 @@ export default function SignupForm({
 						<input
 							type='password'
 							placeholder='@1234-5678'
-							className='rounded-lg border border-black bg-transparent p-1 outline-none invalid:text-red-500 dark:border-white'
+							className='rounded-lg border border-black bg-transparent p-1 shadow-sm shadow-black/50 outline-none invalid:text-red-500 dark:border-white dark:shadow-white/50'
 							minLength={6}
 							required
 							pattern='(?=.*\d)(?=.*[a-z]).{6,}'
@@ -110,14 +110,16 @@ export default function SignupForm({
 						<input
 							type='password'
 							placeholder='@1234-5678'
-							className='rounded-lg border border-black bg-transparent p-1 outline-none invalid:text-red-500 dark:border-white'
+							className='rounded-lg border border-black bg-transparent p-1 shadow-sm shadow-black/50 outline-none invalid:text-red-500 dark:border-white dark:shadow-white/50'
 							minLength={6}
 							required
 							pattern='(?=.*\d)(?=.*[a-z]).{6,}'
 							{...register('confirmPassword')}
 						/>
 					</div>
-					<button className='rounded-lg border border-white p-2'>entrar</button>
+					<button className='rounded-lg border border-black p-2 shadow-sm shadow-black/50 transition hover:bg-black/10 dark:border-white dark:shadow-white/50 dark:hover:bg-white/20'>
+						entrar
+					</button>
 					<div
 						className={cn(
 							'absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-red-500 opacity-0 transition',

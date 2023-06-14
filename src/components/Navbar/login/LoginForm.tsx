@@ -56,7 +56,7 @@ export default function LoginForm({
 		<form
 			onSubmit={handleSubmit(registerUser)}
 			className={`top-0 flex flex-col gap-4 rounded-lg border border-black bg-white p-2 after:absolute after:-top-2 after:left-1/2 after:h-4 after:w-4 after:-translate-x-1/2 after:rotate-45 after:border-l after:border-t after:border-black after:bg-white after:transition after:content-[""] dark:border-white dark:bg-black dark:after:border-white dark:after:bg-black ${className}`}>
-			<div className='flex flex-col gap-2'>
+			<div className='flex flex-col'>
 				<div className='relative flex'>
 					<p>Email</p>
 					<p className='peer/email cursor-pointer p-1 text-red-500'>*</p>
@@ -73,7 +73,7 @@ export default function LoginForm({
 				/>
 			</div>
 
-			<div className='flex flex-col gap-2'>
+			<div className='flex flex-col'>
 				<div className='relative flex'>
 					<p>Senha</p>
 					<p className='peer/password cursor-pointer p-1 text-red-500'>*</p>
@@ -91,7 +91,9 @@ export default function LoginForm({
 					{...register('password')}
 				/>
 			</div>
-			<button className='rounded-lg border border-white p-2'>entrar</button>
+			<button className='rounded-lg border border-black p-2 transition hover:bg-black/10 dark:border-white dark:hover:bg-white/20'>
+				entrar
+			</button>
 			<div
 				className={cn(
 					'absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-red-500 opacity-0 transition',

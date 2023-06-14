@@ -36,22 +36,34 @@ export default function Login({ setSession }: { setSession: Dispatch<SetStateAct
 			) : (
 				<>
 					<div className='relative'>
-						<button onClick={() => setLoginIsOpen((data) => !data)}>Entrar</button>
+						<button
+							onClick={() => {
+								setLoginIsOpen((data) => !data);
+								setSignupIsOpen((data) => false);
+							}}>
+							Entrar
+						</button>
 						<div className='absolute -bottom-2 left-1/2 z-20 origin-top -translate-x-1/2 translate-y-full'>
 							<LoginForm
 								className={cn('origin-top scale-100 transition', {
-									'scale-0': !isLoginOpen,
+									'h-0 scale-0': !isLoginOpen,
 								})}
 								setSession={setSession}
 							/>
 						</div>
 					</div>
 					<div className='relative'>
-						<button onClick={() => setSignupIsOpen((data) => !data)}>Cadastrar-se</button>
+						<button
+							onClick={() => {
+								setSignupIsOpen((data) => !data);
+								setLoginIsOpen((data) => false);
+							}}>
+							Cadastrar-se
+						</button>
 						<div className='absolute -bottom-2 z-20 origin-top -translate-x-1/2 translate-y-full'>
 							<SignupForm
 								className={cn('origin-top scale-100 transition', {
-									'scale-0': !isSignupOpen,
+									'h-0 scale-0': !isSignupOpen,
 								})}
 								setSession={setSession}
 							/>
