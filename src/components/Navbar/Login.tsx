@@ -5,9 +5,11 @@ import LoginForm from './login/LoginForm';
 import { cn, supabase } from '@/utils/utils';
 import { sessionContext } from '@/utils/context';
 import { Session } from '@supabase/supabase-js';
+import SignupForm from './signup/SingupForm';
 
 export default function Login({ setSession }: { setSession: Dispatch<SetStateAction<Session | null>> }) {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isLoginOpen, setLoginIsOpen] = useState(false);
+	const [isSignupOpen, setSignupIsOpen] = useState(false);
 
 	const session = useContext(sessionContext);
 
@@ -21,7 +23,8 @@ export default function Login({ setSession }: { setSession: Dispatch<SetStateAct
 
 	useEffect(() => {
 		if (session) {
-			setIsOpen(false);
+			setLoginIsOpen(false);
+			setSignupIsOpen(false);
 		}
 	}, [session]);
 
@@ -33,17 +36,27 @@ export default function Login({ setSession }: { setSession: Dispatch<SetStateAct
 			) : (
 				<>
 					<div className='relative'>
-						<button onClick={() => setIsOpen((data) => !data)}>Entrar</button>
+						<button onClick={() => setLoginIsOpen((data) => !data)}>Entrar</button>
 						<div className='absolute -bottom-2 left-1/2 z-20 origin-top -translate-x-1/2 translate-y-full'>
 							<LoginForm
 								className={cn('origin-top scale-100 transition', {
-									'scale-0': !isOpen,
+									'scale-0': !isLoginOpen,
 								})}
 								setSession={setSession}
 							/>
 						</div>
 					</div>
-					<button>Registrar-se</button>
+					<div className='relative'>
+						<button onClick={() => setSignupIsOpen((data) => !data)}>Cadastrar-se</button>
+						<div className='absolute -bottom-2 z-20 origin-top -translate-x-1/2 translate-y-full'>
+							<SignupForm
+								className={cn('origin-top scale-100 transition', {
+									'scale-0': !isSignupOpen,
+								})}
+								setSession={setSession}
+							/>
+						</div>
+					</div>
 				</>
 			)}
 		</div>

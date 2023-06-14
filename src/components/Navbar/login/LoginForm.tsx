@@ -78,7 +78,7 @@ export default function LoginForm({
 					<p>Senha</p>
 					<p className='peer/password cursor-pointer p-1 text-red-500'>*</p>
 					<p className='absolute -left-2 top-2 origin-top-right -translate-x-full scale-0 rounded-l-lg border border-black p-2 transition peer-hover/password:scale-100 dark:border-white'>
-						senha precisa conter pelo menos 6 dígitos, com um número e uma letra.
+						A senha precisa conter pelo menos 6 dígitos, com um número e uma letra.
 					</p>
 				</div>
 				<input
