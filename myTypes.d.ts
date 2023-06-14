@@ -13,6 +13,15 @@ interface player {
 	user_id: string;
 }
 
+interface MatchData {
+	pts: number;
+	pj: number;
+	v: number;
+	e: number;
+	d: number;
+	goals: number;
+}
+
 interface team {
 	id: number;
 	name: string;
@@ -21,4 +30,5 @@ interface team {
 	owner: string;
 	description?: string;
 	image?: string;
+	data?: MatchData;
 }

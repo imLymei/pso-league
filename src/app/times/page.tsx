@@ -8,15 +8,6 @@ import { useEffect, useState } from 'react';
 import { BsArrowDownShort } from 'react-icons/bs';
 import { TbArrowBadgeUp } from 'react-icons/tb';
 
-interface MatchData {
-	pts: number;
-	pj: number;
-	v: number;
-	e: number;
-	d: number;
-	goals: number;
-}
-
 export default function Times() {
 	const [teams, setTeams] = useState<team[]>([]);
 	const [matches, setMatches] = useState<match[]>([]);
@@ -25,10 +16,15 @@ export default function Times() {
 	async function getTeams() {
 		let { data: teams, error } = await supabase.from('teams').select('*');
 
-		if (!error) {
-			//@ts-ignore
-			setTeams([...teams]);
-		}
+		const matches = getMatches().then((allMatches) => {
+			const realTeams = teams
+				?.map((data) => ({ ...data, data: getMyMatches(allMatches, data.id) }))
+				.sort((a, b) => b.data.pts - a.data.pts);
+			if (!error) {
+				//@ts-ignore
+				setTeams([...realTeams]);
+			}
+		});
 	}
 
 	async function getMatches() {
@@ -38,9 +34,11 @@ export default function Times() {
 			//@ts-ignore
 			setMatches([...matches]);
 		}
+		//@ts-ignore
+		return [...matches];
 	}
 
-	function getMyMatches(teamId: number) {
+	function getMyMatches(matches: match[], teamId: number) {
 		const myMatches = matches.filter((match) => match.home == teamId || match.away == teamId);
 
 		let goals = 0;
@@ -73,28 +71,24 @@ export default function Times() {
 			}
 		});
 
-		const data: MatchData[] = [
-			{
-				pts: wins * 3 + ties,
-				pj: myMatches.length,
-				v: wins,
-				e: myMatches.reduce((total, match) => {
-					const results = match.results.split('x');
+		const data: MatchData = {
+			pts: wins * 3 + ties,
+			pj: myMatches.length,
+			v: wins,
+			e: myMatches.reduce((total, match) => {
+				const results = match.results.split('x');
 
-					if (results[0] == results[1]) return total + 1;
-					else return total;
-				}, 0),
-				d: losses,
-				goals: goals,
-			},
-		];
-
+				if (results[0] == results[1]) return total + 1;
+				else return total;
+			}, 0),
+			d: losses,
+			goals: goals,
+		};
 		return data;
 	}
 
 	useEffect(() => {
 		getTeams();
-		getMatches();
 	}, []);
 
 	return (
@@ -125,34 +119,30 @@ export default function Times() {
 								</Link>
 							</div>
 							<div className='absolute left-2/3 flex gap-x-4 max-sm:top-16 max-sm:flex-col sm:-translate-x-1/2'>
-								{getMyMatches(team.id).map((match, index) => (
-									<>
-										<div className='grid grid-cols-2 items-center max-sm:w-24 sm:flex sm:flex-col sm:justify-center'>
-											<p>PTS:</p>
-											<p>{match.pts}</p>
-										</div>
-										<div className='grid grid-cols-2 items-center max-sm:w-24 sm:flex sm:flex-col sm:justify-center'>
-											<p>PJ:</p>
-											<p>{match.pj}</p>
-										</div>
-										<div className='grid grid-cols-2 items-center max-sm:w-24 sm:flex sm:flex-col sm:justify-center'>
-											<p>V:</p>
-											<p>{match.v}</p>
-										</div>
-										<div className='grid grid-cols-2 items-center max-sm:w-24 sm:flex sm:flex-col sm:justify-center'>
-											<p>E:</p>
-											<p>{match.e}</p>
-										</div>
-										<div className='grid grid-cols-2 items-center max-sm:w-24 sm:flex sm:flex-col sm:justify-center'>
-											<p>D:</p>
-											<p>{match.d}</p>
-										</div>
-										<div className='grid grid-cols-2 items-center max-sm:w-24 sm:flex sm:flex-col sm:justify-center'>
-											<p>Gols:</p>
-											<p>{match.goals}</p>
-										</div>
-									</>
-								))}
+								<div className='grid grid-cols-2 items-center max-sm:w-24 sm:flex sm:flex-col sm:justify-center'>
+									<p>PTS:</p>
+									<p>{team.data?.pts}</p>
+								</div>
+								<div className='grid grid-cols-2 items-center max-sm:w-24 sm:flex sm:flex-col sm:justify-center'>
+									<p>PJ:</p>
+									<p>{team.data?.pj}</p>
+								</div>
+								<div className='grid grid-cols-2 items-center max-sm:w-24 sm:flex sm:flex-col sm:justify-center'>
+									<p>V:</p>
+									<p>{team.data?.v}</p>
+								</div>
+								<div className='grid grid-cols-2 items-center max-sm:w-24 sm:flex sm:flex-col sm:justify-center'>
+									<p>E:</p>
+									<p>{team.data?.e}</p>
+								</div>
+								<div className='grid grid-cols-2 items-center max-sm:w-24 sm:flex sm:flex-col sm:justify-center'>
+									<p>D:</p>
+									<p>{team.data?.d}</p>
+								</div>
+								<div className='grid grid-cols-2 items-center max-sm:w-24 sm:flex sm:flex-col sm:justify-center'>
+									<p>Gols:</p>
+									<p>{team.data?.goals}</p>
+								</div>
 							</div>
 							<button
 								onClick={() => (teamOpen == team.id ? setTeamOpen(-1) : setTeamOpen(team.id))}
