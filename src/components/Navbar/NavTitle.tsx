@@ -14,7 +14,7 @@ export default function NavTitle() {
 					className='object-contain'
 				/>
 			</div>
-			<p className='select-none'>Tabela PSO</p>
+			<p className='select-none'>PSO League</p>
 		</Link>
 	);
 }

@@ -16,7 +16,9 @@ interface player {
 interface team {
 	id: number;
 	name: string;
-	players: number[];
+	players: string[];
 	captain: string;
 	owner: string;
+	description?: string;
+	image?: string;
 }
