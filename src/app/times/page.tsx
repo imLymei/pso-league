@@ -90,6 +90,7 @@ export default function Times() {
 			{teams.map((team) => (
 				<div
 					key={team.id}
+					id={team.tag}
 					className={cn(
 						'flex flex-col justify-between gap-4 overflow-hidden rounded-lg border border-black p-4 transition-all dark:border-white',
 						{ 'h-20': teamOpen != team.id }
@@ -104,7 +105,10 @@ export default function Times() {
 							/>
 						</div>
 						<div className='flex flex-col'>
-							<p className='text-2xl'>{team.name}</p>
+							<div className='flex items-center gap-2'>
+								<p className='text-2xl'>{team.name}</p>
+								{team.tag && <p className='text-sm text-slate-400 dark:text-slate-600'>#{team.tag}</p>}
+							</div>
 							<Link
 								href={`/jogadores/${team.owner}`}
 								className='w-fit text-sm text-blue-500 decoration-solid transition hover:text-blue-600'>

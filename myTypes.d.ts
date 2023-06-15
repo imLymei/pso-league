@@ -14,6 +14,7 @@ interface Player {
 	number: number;
 	email: number;
 	user_id: string;
+	image?: string;
 }
 
 interface MatchData {
@@ -34,4 +35,5 @@ interface Team {
 	description?: string;
 	image?: string;
 	data?: MatchData;
+	tag?: string;
 }
