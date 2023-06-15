@@ -4,6 +4,7 @@ import TeamBadge from '@/components/partidas/TeamBadge';
 import { cn, supabase } from '@/utils/utils';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { BsArrowDownShort } from 'react-icons/bs';
 
 export default function Partidas() {
 	const [matches, setMatches] = useState<Match[]>([]);
@@ -56,7 +57,15 @@ export default function Partidas() {
 							{ 'h-20': whoIsOpen != match.id }
 						)}>
 						<TeamBadge team={home ? home : notFoundTeam} />
-						<p className='flex items-center'>{match.results}</p>
+						<div className='relative flex items-center justify-center'>
+							<p>{match.results}</p>
+							<BsArrowDownShort
+								className={cn('absolute -bottom-1 rotate-0 transition', {
+									'rotate-180': whoIsOpen == match.id,
+								})}
+								size={25}
+							/>
+						</div>
 						<TeamBadge team={away ? away : notFoundTeam} />
 						<div className='flex flex-col'>
 							{match.home_scores?.map((scorer, index) => (
