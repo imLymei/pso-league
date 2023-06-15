@@ -4,7 +4,7 @@ import { cn, supabase } from '@/utils/utils';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { useEffect, useState } from 'react';
-import { isDarkModeContext, sessionContext, playerContext } from '@/utils/context';
+import { isDarkModeContext, sessionContext, playerContext, setPlayerContext } from '@/utils/context';
 import Navbar from '@/components/Navbar';
 import { Session } from '@supabase/supabase-js';
 import PlayerDetails from '@/components/PlayerDetails';
@@ -75,9 +75,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<isDarkModeContext.Provider value={isDarkMode}>
 					<sessionContext.Provider value={session}>
 						<playerContext.Provider value={player}>
-							<Navbar setIsDarkMode={setIsDarkMode} setSession={setSession} />
-							<main className='pb-24 pt-14'>{children}</main>
-							{choosingName && <PlayerDetails setPlayer={setPlayer} setChoosingName={setChoosingName} />}
+							<setPlayerContext.Provider value={setPlayer}>
+								<Navbar setIsDarkMode={setIsDarkMode} setSession={setSession} />
+								<main className='pb-24 pt-14'>{children}</main>
+								{choosingName && <PlayerDetails setPlayer={setPlayer} setChoosingName={setChoosingName} />}
+							</setPlayerContext.Provider>
 						</playerContext.Provider>
 					</sessionContext.Provider>
 				</isDarkModeContext.Provider>

@@ -1,12 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { cn, supabase, toDecimal } from '@/utils/utils';
 import { AiOutlineLoading } from 'react-icons/ai';
 import Image from 'next/image';
 import Link from 'next/link';
 import useMouse from '@/hooks/useMouse';
 import useWindow from '@/hooks/useWindow';
+import { playerContext } from '@/utils/context';
+import EditForm from '@/components/jogadores/EditForm';
 
 interface Params {
 	uid: string;
@@ -17,6 +19,8 @@ export default function UserPage({ params }: { params: Params }) {
 	const [pageTeam, setPageTeam] = useState<Team>();
 	const [isLoading, setIsLoading] = useState(true);
 	const [css, setCss] = useState<string>();
+
+	const player = useContext(playerContext);
 
 	const mousePosition = useMouse();
 	const windowSize = useWindow();
@@ -116,25 +120,11 @@ export default function UserPage({ params }: { params: Params }) {
 
 	return (
 		<div className={cn('flex min-h-[80vh] flex-col items-center justify-center p-4')}>
+			{pagePlayer != null && player != null && pagePlayer.user_id == player.user_id && (
+				<EditForm player={pagePlayer} />
+			)}
 			{isLoading ? (
-				<div className={cn('overflow-hidden rounded-lg bg-slate-600 dark:border-white', css)}>
-					<div className='p-4'>
-						<div className='relative aspect-square w-72 animate-pulse overflow-hidden rounded-full bg-slate-500' />
-
-						<div className='flex flex-col items-center justify-center'>
-							<p className='mt-2 h-6 w-36 animate-pulse rounded-lg bg-slate-500'></p>
-							<p className='mt-2 h-5 w-20 animate-pulse rounded-lg bg-slate-500'></p>
-						</div>
-					</div>
-					<div className='h-px w-full bg-black/20 dark:bg-white/20' />
-					<div className='flex items-center justify-center p-4'>
-						<p className='mt-2 h-6 w-36 animate-pulse rounded-lg bg-slate-500'></p>
-					</div>
-
-					<div className='flex items-center justify-center pb-4'>
-						<p className='mt-2 h-5 w-52 animate-pulse rounded-lg bg-slate-500'></p>
-					</div>
-				</div>
+				<AiOutlineLoading className='animate-spin' size={25} />
 			) : pagePlayer == null ? (
 				<p>Usuário nao encontrado</p>
 			) : (
@@ -176,6 +166,9 @@ export default function UserPage({ params }: { params: Params }) {
 								) : (
 									''
 								)}
+							</div>
+							<div className='flex justify-center gap-2'>
+								<p>Camisa {pagePlayer.number}</p>
 							</div>
 						</div>
 					</div>
