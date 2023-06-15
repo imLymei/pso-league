@@ -48,13 +48,13 @@ export default function Login({
 					<Link
 						href={`/jogadores/${player?.user_id}`}
 						aria-disabled={player?.user_id ? 'false' : 'true'}
-						className='absolute flex items-center rounded-full border border-black p-2 dark:border-white'>
+						className='flex items-center rounded-full border border-black p-2 dark:border-white max-sm:absolute'>
 						{player?.name}
 					</Link>
 					<button
 						onClick={handleLogOut}
 						className={cn(
-							'absolute transition max-sm:absolute max-sm:-bottom-10 max-sm:right-4 max-sm:translate-x-[200%]',
+							'transition max-sm:absolute max-sm:absolute max-sm:-bottom-10 max-sm:right-4 max-sm:translate-x-[220%]',
 							{
 								'z-40 max-sm:translate-x-0': isOpen,
 							}
