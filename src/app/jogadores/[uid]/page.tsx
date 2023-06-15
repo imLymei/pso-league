@@ -9,7 +9,7 @@ interface Params {
 }
 
 export default function UserPage({ params }: { params: Params }) {
-	const [pagePlayer, setPagePlayer] = useState<player | null>();
+	const [pagePlayer, setPagePlayer] = useState<Player | null>();
 	const [isLoading, setIsLoading] = useState(true);
 
 	async function getPlayer() {
