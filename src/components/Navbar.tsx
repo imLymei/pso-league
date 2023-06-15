@@ -23,12 +23,12 @@ export default function Navbar({
 	const isDarkMode = useContext(isDarkModeContext);
 
 	return (
-		<div className='relative flex items-center justify-between px-2 py-2 sm:px-8'>
+		<div className='fixed z-40 flex w-full items-center justify-between bg-white px-2 py-2 dark:bg-black sm:px-8'>
 			<NavTitle />
 
 			<NavLinks />
 
-			<div className='flex items-center gap-4'>
+			<div className='left-80 flex items-center gap-4 max-sm:absolute'>
 				<SwitchDarkMode
 					onClick={() => {
 						setIsDarkMode((value) => !value);
@@ -40,7 +40,7 @@ export default function Navbar({
 				/>
 				<div
 					className={cn(
-						'absolute right-0 top-0 z-30 h-screen w-1/2 translate-x-full border-l border-black bg-black/30 backdrop-blur-sm transition dark:border-white dark:bg-black/50 sm:hidden',
+						'absolute -top-4 right-0 z-30 h-screen w-[200px] translate-x-[120%] border-l border-black bg-black/30 backdrop-blur-sm transition dark:border-white dark:bg-black/50 sm:hidden',
 						{
 							'max-sm:translate-x-0': isOpen,
 						}
@@ -48,7 +48,9 @@ export default function Navbar({
 				/>
 				<Login setSession={setSession} isOpen={isOpen} />
 				<div
-					className={cn('ml-4 rotate-0 transition duration-300 sm:hidden', { 'z-50 rotate-180': isOpen })}
+					className={cn('ml-4 rotate-0 transition duration-300 sm:hidden', {
+						'z-50 rotate-180': isOpen,
+					})}
 					onClick={() => setIsOpen((data) => !data)}>
 					{isOpen ? <BsFillGearFill size={25} /> : <BsGear size={25} />}
 				</div>

@@ -1,11 +1,14 @@
-interface match {
+interface Match {
 	id: number;
 	home: number;
+	home_scores?: string[];
 	away: number;
+	away_scores?: string[];
 	results: string;
+	created_at: Date;
 }
 
-interface player {
+interface Player {
 	id: number;
 	name: string;
 	number: number;
@@ -22,7 +25,7 @@ interface MatchData {
 	goals: number;
 }
 
-interface team {
+interface Team {
 	id: number;
 	name: string;
 	players: string[];

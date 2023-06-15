@@ -48,13 +48,13 @@ export default function Login({
 					<Link
 						href={`/jogadores/${player?.user_id}`}
 						aria-disabled={player?.user_id ? 'false' : 'true'}
-						className='flex items-center rounded-full border border-black p-2 dark:border-white'>
+						className='absolute flex items-center rounded-full border border-black p-2 dark:border-white'>
 						{player?.name}
 					</Link>
 					<button
 						onClick={handleLogOut}
 						className={cn(
-							'transition max-sm:absolute max-sm:-bottom-10 max-sm:right-4 max-sm:translate-x-[150%]',
+							'absolute transition max-sm:absolute max-sm:-bottom-10 max-sm:right-4 max-sm:translate-x-[200%]',
 							{
 								'z-40 max-sm:translate-x-0': isOpen,
 							}
@@ -66,7 +66,7 @@ export default function Login({
 				<>
 					<div
 						className={cn(
-							'relative z-50 transition max-sm:absolute max-sm:-bottom-20 max-sm:right-4 max-sm:translate-x-[150%]',
+							'relative z-50 transition max-sm:absolute max-sm:-bottom-24 max-sm:right-4 max-sm:translate-x-[200%]',
 							{
 								'z-40 max-sm:translate-x-0': isOpen,
 							}
@@ -89,7 +89,7 @@ export default function Login({
 					</div>
 					<div
 						className={cn(
-							'relative transition max-sm:absolute max-sm:-bottom-10 max-sm:right-4 max-sm:translate-x-[150%]',
+							'relative whitespace-nowrap transition max-sm:absolute max-sm:-bottom-16 max-sm:right-4 max-sm:translate-x-[200%]',
 							{
 								'z-40 max-sm:translate-x-0': isOpen,
 							}

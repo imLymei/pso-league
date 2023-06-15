@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	const [session, setSession] = useState<Session | null>(null);
 	const [choseName, setChoseName] = useState(false);
 	const [choosingName, setChoosingName] = useState(false);
-	const [player, setPlayer] = useState<player | null>(null);
+	const [player, setPlayer] = useState<Player | null>(null);
 
 	function updateLocalStorage() {
 		localStorage.setItem('pso-darkmode', isDarkMode ? 'dark' : 'light');
@@ -65,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang='en'>
 			<head>
-				<title>Tabela de Times PSO</title>
+				<title>PSO League</title>
 				<meta name='description' content='Um site para tabelas de PSO'></meta>
 			</head>
 			<body
@@ -76,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<sessionContext.Provider value={session}>
 						<playerContext.Provider value={player}>
 							<Navbar setIsDarkMode={setIsDarkMode} setSession={setSession} />
-							{children}
+							<main className='pt-14'>{children}</main>
 							{choosingName && <PlayerDetails setPlayer={setPlayer} setChoosingName={setChoosingName} />}
 						</playerContext.Provider>
 					</sessionContext.Provider>
