@@ -16,7 +16,7 @@ export default function PlayerDetails({
 	setPlayer,
 	setChoosingName,
 }: {
-	setPlayer: Dispatch<SetStateAction<player | null>>;
+	setPlayer: Dispatch<SetStateAction<Player | null>>;
 	setChoosingName: Dispatch<SetStateAction<boolean>>;
 }) {
 	const [isUserIdFree, setIsUserIdFree] = useState(false);
