@@ -76,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<sessionContext.Provider value={session}>
 						<playerContext.Provider value={player}>
 							<Navbar setIsDarkMode={setIsDarkMode} setSession={setSession} />
-							<main className='pt-14'>{children}</main>
+							<main className='pb-24 pt-14'>{children}</main>
 							{choosingName && <PlayerDetails setPlayer={setPlayer} setChoosingName={setChoosingName} />}
 						</playerContext.Provider>
 					</sessionContext.Provider>
